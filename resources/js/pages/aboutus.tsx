@@ -1,5 +1,5 @@
 import AppLayout from "@/components/layout/appLayout"
-import History from "@/components/sections/History"
+import History from "@/components/sections/history"
 import Experience from "@/components/sections/experience"
 import Overview from "@/components/sections/overview"
 
