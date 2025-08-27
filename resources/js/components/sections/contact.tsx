@@ -2,7 +2,6 @@
 
 export default function ContactUs() {
   return (
-    <section className=" py-16">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
         
         {/* Contact Form */}
@@ -63,6 +62,5 @@ export default function ContactUs() {
           </div>
         </div>
       </div>
-    </section>
   );
 }

@@ -34,8 +34,14 @@ export default function Home(){
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
 
+    const navigationProps = [
+        { title: "About Us", href: "/aboutus",  },
+        { title: "Media", href: "#media" },
+        { title: "Events", href: "#events" },
+        { title: "Contacts", href: "#contact" },
+    ]
     return (
-        <AppLayout>
+        <AppLayout navigation={navigationProps}>
             <section className="relative w-full h-96 overflow-hidden">
                 {/* Slides */}
                 {slides.map((slide, index) => (

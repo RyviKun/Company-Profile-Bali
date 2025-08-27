@@ -41,7 +41,7 @@ export default function footer(){
 
         {/* Bottom bar */}
         <div className="mt-10 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
-          Copyright © {new Date().getFullYear()} <span className="font-semibold text-white">Nabel Sakha Group</span>
+          Copyright © {new Date().getFullYear()} <span className="font-semibold text-white">PT.Media Expo Indonesia</span>
         </div>
       </div>
     </footer>

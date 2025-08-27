@@ -3,14 +3,18 @@ import Footer from "@/components/myComponent/footer"
 import {ReactNode} from "react"
 
 interface NavbarProps{
+    navigation:{
+         title: string;
+         href: string;
+    }[],
     children? : ReactNode;
 }
 
-export default function AppLayout({children} : NavbarProps) {
+export default function AppLayout({navigation, children} : NavbarProps) {
     
     return (
-        <div className=" w-screen h-fit min-h-screen bg-gray-900">
-            <Navbar/>
+        <div className=" w-full h-fit min-h-screen bg-gray-900">
+            <Navbar navigation={navigation}/>
             <main>{children}</main>
             <Footer/>
         </div>

@@ -4,25 +4,25 @@
 export default function EventsSection() {
     const events = [
   {
-    date: "10 - 12 September",
+    date: "20 - 22 August 2026",
     time: "7:00 pm - 10:00 pm",
     title: "B2B Exhibitions & Conventions",
     img: "/images/event/1.jpg",
   },
   {
-    date: "12 - 14 September",
+    date: "20 - 22 August 2026",
     time: "7:00 pm",
     title: "Product Launches",
     img: "/images/event/2.png",
   },
   {
-    date: "12 - 14 Oktober",
+    date: "20 - 22 August 2026",
     time: "7:00 pm - 10:00 pm",
     title: "Private & Social Events",
     img: "/images/event/3.jpg",
   },
   {
-    date: "12 - 14 Oktober",
+    date: "20 - 22 August 2026",
     time: "10:00 pm - 2:00 am",
     title: "PACIFIC COATINGS SHOW",
     img: "/images/event/4.jpg",
