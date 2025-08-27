@@ -9,7 +9,9 @@ export default function OverviewSection() {
             We Help Business Grow <br /> and Become Successful
           </h2>
           <p className="text-background mb-6">
-            Our 50 years’ experienced minds are the top consulting firm worldwide.
+           We are a professional event organizer specializing in B2B exhibitions, conferences, and corporate events across Indonesia. With an excellent team of experts, we don’t just organize events—we partner with our clients to bring their vision to life. From concept to execution, we ensure every detail reflects their goals, while creating impactful platforms that connect businesses, expand networks, and unlock new market opportunities.
+
+          Driven by innovation and professionalism, we deliver events that engage the right audience, open doors to new markets, and strengthen brand presence in Indonesia’s dynamic business landscape.
           </p>
           
         </div>

@@ -2,27 +2,28 @@
 export default function Experience() {
 
     const experiences = [
-  {
-    title: "24/7 Support",
-    description: "Always by your side, our 24/7 customer support ensures your business never misses a beat.",
-    image: "/images/support.jpg",
-  },
-  {
-    title: "Used Oil Analysis",
-    description: "Optimize & prevent failures with Used Oil Analysis—insights that keep your machines running smoothly.",
-    image: "/images/oil-analysis.jpg",
-  },
-  {
-    title: "Technical Visit",
-    description: "Expert support, right at your site! Our Technical Visit ensures optimal performance & tailored solutions for your operations.",
-    image: "/images/technical-visit.jpg",
-  },
-  {
-    title: "Onsite Seminar",
-    description: "Upgrade your team’s expertise with our Onsite Seminar—practical insights delivered right at your facility.",
-    image: "/images/onsite-seminar.jpg",
-  },
-];
+    {
+      title: "Over a Decade of Impactful Events",
+      description: "With 10+ years in the industry, we've executed over 500 events across Indonesia—from high-stakes corporate launches to intimate brand activations.",
+      image: "/images/experience/1.png",
+    },
+    {
+      title: "Cross-Industry Expertise",
+      description: "We've partnered with clients in tech, finance, FMCG, lifestyle, and government sectors—tailoring each experience to audience, brand, and business goals.",
+      image: "/images/experience/2.png",
+    },
+    {
+      title: "Creative Strategy Meets Operational Precision",
+      description: "We bridge bold creative concepts with airtight logistics—from ideation to post-event analytics, managing every detail for maximum impact.",
+      image: "/images/experience/3.png",
+    },
+    {
+      title: "Trusted by Leading Brands",
+      description: "Our portfolio includes top-tier companies with a 90% client retention rate and glowing testimonials that speak to our consistent excellence.",
+      image: "/images/experience/4.png",
+    },
+  ];
+
 
   return (
       <div className="max-w-7xl mx-auto  items-center px-6 md:px-12 gap-10">

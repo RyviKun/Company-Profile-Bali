@@ -54,11 +54,11 @@ export default function ContactUs() {
 
           <div className="space-y-4">
             <p className="flex items-center gap-3 text-gray-800 justify-center">
-              📞 +62 21 2789 3347
+              📞 +62 852 9798 8227
             </p>
             <p className="flex items-center gap-3 text-gray-800 justify-center">
-              ✉️ <a href="mailto:admin@hbm.co.id" className="hover:underline">admin@hbm.co.id</a> | 
-              <a href="mailto:sales@hbm.co.id" className="hover:underline"> sales@hbm.co.id</a>
+              ✉️ <a href="Meimkt.id@gmail.com" className="hover:underline">Meimkt.id@gmail.com</a> | 
+              <a href="Meimkt.id@gmail.com" className="hover:underline"> Meimkt.id@gmail.com</a>
             </p>
           </div>
         </div>

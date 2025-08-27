@@ -4,26 +4,9 @@ export default function footer(){
     const offices = [
     {
       title: "Head Office",
-      address:
-        "Jl. Scientia Garden T/07, Scientia Boulevard. Gading Serpong, Kab. Tangerang – Banten 15810",
-      phone: "+62 21 5421 0098",
-      fax: "+62 21 5421 0099",
-      email: "sales@nabelsakha.com",
-    },
-    {
-      title: "Bekasi Office",
-      address:
-        "BizPark 3 Bekasi, Jl. Sultan Agung No.80 No. C37, Kali Baru, Medan Satria, Bekasi, West Java 17132",
-      phone: "+62 21 2945 0537",
-      fax: "+62 21 2945 0538",
-      email: "sales@nabelsakha.com",
-    },
-    {
-      title: "Balikpapan Office",
-      address:
-        "Karang Joang, Balikpapan Utara, Kota Balikpapan, Kalimantan Timur, Indonesia",
-      phone: "+62 811 1916 8755 (Bimo Fajar)",
-      email: "sales@nabelsakha.com",
+      phone: "+62 852 9798 8227",
+      fax: "+62 852 9798 8227",
+      email: "Meimkt.id@gmail.com",
     },
   ];
 
@@ -35,7 +18,6 @@ export default function footer(){
           {offices.map((office, index) => (
             <div key={index}>
               <h3 className="text-lg font-bold mb-3">{office.title}</h3>
-              <p className="text-sm mb-2">{office.address}</p>
               <p className="text-sm">
                 <span className="font-medium">Phone:</span> {office.phone}
               </p>

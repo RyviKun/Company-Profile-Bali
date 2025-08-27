@@ -6,17 +6,17 @@ import {useState, useEffect} from "react"
 export default function Home(){
     const slides = [
     {
-      image: "/images/hero-banner.jpg",
+      image: "/images/caraousel/1.JPG",
       title: "About Us",
       text: "Welcome to our company profile. We strive to build excellence and deliver value.",
     },
     {
-      image: "/images/hero-banner2.jpg",
+      image: "/images/caraousel/2.JPG",
       title: "Our Vision",
       text: "We aim to shape the future with innovative solutions.",
     },
     {
-      image: "/images/hero-banner3.jpg",
+      image: "/images/caraousel/3.JPG",
       title: "Our Team",
       text: "A dedicated team working together to achieve success.",
     },
@@ -81,13 +81,13 @@ export default function Home(){
             <h2 className="text-2xl font-semibold mb-4">Media</h2>
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                 <div className="bg-gray-200 rounded-xl h-40 flex items-center justify-center overflow-hidden">
-                   <img src="https://abh.ai/random/400/400"/>
+                   <img src="/images/media/1.JPG"/>
                 </div>
                 <div className="bg-gray-200 rounded-xl h-40 flex items-center justify-center overflow-hidden">
-                    <img src="https://abh.ai/nature/400/400"/>
+                    <img src="/images/media/2.JPG"/>
                 </div>
                 <div className="bg-gray-200 rounded-xl h-40 flex items-center justify-center overflow-hidden">
-                   <img src="https://abh.ai/beaches/400/400"/>
+                   <img src="/images/media/3.JPG"/>
                 </div>
             </div>
         </section>

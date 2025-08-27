@@ -6,26 +6,26 @@ export default function EventsSection() {
   {
     date: "10 - 12 September",
     time: "7:00 pm - 10:00 pm",
-    title: "REFRIGERATION & HVAC INDONESIA",
-    img: "https://random-image-pepebigotes.vercel.app/api/random-image",
+    title: "B2B Exhibitions & Conventions",
+    img: "/images/event/1.jpg",
   },
   {
     date: "12 - 14 September",
     time: "7:00 pm",
-    title: "INDUSTRIAL & COMMERCIAL BUILDING TECHNOLOGY EXHIBITION",
-    img: "https://random-image-pepebigotes.vercel.app/api/random-image",
+    title: "Product Launches",
+    img: "/images/event/2.png",
   },
   {
     date: "12 - 14 Oktober",
     time: "7:00 pm - 10:00 pm",
-    title: "INDONESIA FUTURE ENERGY TECHNOLOGY",
-    img: "https://random-image-pepebigotes.vercel.app/api/random-image",
+    title: "Private & Social Events",
+    img: "/images/event/3.jpg",
   },
   {
     date: "12 - 14 Oktober",
     time: "10:00 pm - 2:00 am",
     title: "PACIFIC COATINGS SHOW",
-    img: "https://random-image-pepebigotes.vercel.app/api/random-image",
+    img: "/images/event/4.jpg",
   }
 ];
   return (
