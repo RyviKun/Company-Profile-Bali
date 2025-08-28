@@ -42,7 +42,7 @@ export default function Home(){
     ]
     return (
         <AppLayout navigation={navigationProps}>
-            <section className="relative w-full h-96 overflow-hidden">
+            <section className="relative md:h-96 w-full h-48 overflow-hidden">
                 {/* Slides */}
                 {slides.map((slide, index) => (
                     <div
@@ -83,9 +83,9 @@ export default function Home(){
         
 
         {/* Media Section */}
-        <section id="media" className="py-16 w-full text-center bg-background">
+        <section id="media" className="py-16 w-full text-center bg-background flex-col flex">
             <h2 className="text-2xl font-semibold mb-4">Media</h2>
-            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4 md:px-0">
                 <div className="bg-gray-200 rounded-xl h-40 flex items-center justify-center overflow-hidden">
                    <img src="/images/media/1.JPG"/>
                 </div>

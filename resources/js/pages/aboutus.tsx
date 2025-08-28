@@ -15,7 +15,7 @@ export default function AboutUs(){
         <AppLayout navigation={navigationProps}>
            {/* Page Title */}
                 {/* Overview Section */}
-                <section id="overview" className="bg-primary py-16">
+                <section id="overview" className="bg-primary  pt-10 md:pt-0 md:py-16">
                     <Overview/>
                 </section>
 
@@ -25,9 +25,11 @@ export default function AboutUs(){
                 </section>
 
                 {/* History Section */}
+                {/*
                 <section id="history" className="bg-background py-16" >
                     <History/>
-                </section>
+                </section>*/}
+                
         </AppLayout>
     )
 }
