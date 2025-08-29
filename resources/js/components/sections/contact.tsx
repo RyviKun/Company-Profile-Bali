@@ -54,8 +54,7 @@ export default function ContactUs() {
             📞 +62 852 9798 8227
           </p>
           <p className="flex items-center gap-3 text-gray-800 justify-center text-sm md:text-base">
-            ✉️ <a href="mailto:Meimkt.id@gmail.com" className="hover:underline">Meimkt.id@gmail.com</a> |
-            <a href="mailto:Meimkt.id@gmail.com" className="hover:underline"> Meimkt.id@gmail.com</a>
+            ✉️ <a href="mailto:Meimkt.id@gmail.com" className="hover:underline">Meimkt.id@gmail.com</a> 
           </p>
         </div>
       </div>

@@ -3,9 +3,8 @@
 export default function footer(){
     const offices = [
     {
-      title: "Head Office",
+      title: "Connect with us",
       phone: "+62 852 9798 8227",
-      fax: "+62 852 9798 8227",
       email: "Meimkt.id@gmail.com",
     },
   ];
@@ -21,11 +20,6 @@ export default function footer(){
               <p className="text-sm">
                 <span className="font-medium">Phone:</span> {office.phone}
               </p>
-              {office.fax && (
-                <p className="text-sm">
-                  <span className="font-medium">Fax:</span> {office.fax}
-                </p>
-              )}
               <p className="text-sm">
                 <span className="font-medium">Email:</span>{" "}
                 <a
@@ -40,7 +34,7 @@ export default function footer(){
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+        <div className="mt-10 border-t border-gray-700 pt-6  text-sm text-gray-400">
           Copyright © {new Date().getFullYear()} <span className="font-semibold text-white">PT.Media Expo Indonesia</span>
         </div>
       </div>

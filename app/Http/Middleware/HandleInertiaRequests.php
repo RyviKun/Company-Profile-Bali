@@ -53,4 +53,12 @@ class HandleInertiaRequests extends Middleware
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }
+
+    public function title(Request $request): string
+    {
+        return fn ($title = '') => $title
+            ? "$title - Media Expo Indonesia"
+            : 'Media Expo Indonesia';
+    }
+
 }

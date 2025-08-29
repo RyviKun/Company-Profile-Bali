@@ -20,13 +20,16 @@ export default function Navbar({ navigation, children }: NavbarProps) {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             {/* Logo / Brand */}
-            <a className="text-xl font-bold flex items-center" href="/">
+            <a href="/" className="flex flex-row items-center gap-1 md:gap-3">
               <img
                 src="/images/logo/logo.png"
-                className="h-20 w-auto max-w-[160px] object-contain"
+                className="h-16 w-auto max-w-[140px] object-contain"
+                alt="Logo"
               />
-
-              <p className="text-white/50">PT. Media Expo Indonesia</p>
+              <div className="text-xs md:text-base font-semibold text-white/70 leading-tight text-center md:text-left">
+                <span className="block md:inline">PT. Media</span>
+                <span className="block md:inline">Expo Indonesia</span>
+              </div>
             </a>
 
             {/* Hamburger Icon */}

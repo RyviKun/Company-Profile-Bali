@@ -17,10 +17,7 @@ export default function AppLayout({navigation, children} : NavbarProps) {
     return (
 
         <div className=" w-full h-fit min-h-screen bg-gray-900">
-            <Head>
-            <title>Media Expo Indonesia</title>
-            <link rel="icon" href="images\logo\logo.svg" type="image/png" />
-            </Head>
+          
             <Navbar navigation={navigation}/>
             <main>{children}</main>
             <Footer/>

@@ -7,8 +7,7 @@ export default function AboutUs(){
     const navigationProps = [
     { title: "Home", href: "/",  },
     { title: "Experience", href: "#experience" },
-    { title: "Overview", href: "#overview" },
-    { title: "History", href: "#history" },
+    { title: "Overview", href: "#overview" }
   ];
 
     return (
