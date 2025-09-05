@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 export default function ContactUs() {
-
   const [formData, setFormData] = useState({
     businessName: '',
     fullName: '',
@@ -11,28 +10,50 @@ export default function ContactUs() {
     userMessage: '',
   });
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [confirmation, setConfirmation] = useState('');
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(JSON.stringify(formData, null, 2));
+    setErrors({ ...errors, [e.target.name]: '' });
+  };
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    Object.entries(formData).forEach(([key, value]) => {
+      if (!value.trim()) newErrors[key] = 'This field is required';
+    });
+    return newErrors;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     try {
       const res = await fetch('/api/mail', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData, null, 2),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
 
       const result = await res.json();
-      console.log(result);
-      alert(result.status || 'Message sent!');
+      setConfirmation(result.status || 'Message sent!');
+      setFormData({
+        businessName: '',
+        fullName: '',
+        number: '',
+        email: '',
+        subject: '',
+        userMessage: '',
+      });
     } catch (err) {
       console.error(err);
-      alert('Failed to send message');
+      setConfirmation('Failed to send message');
     }
   };
 
@@ -45,11 +66,13 @@ export default function ContactUs() {
             <label className="block mb-1 md:mb-2 text-sm font-medium text-gray-900">Business Name</label>
             <input name="businessName" type="text" value={formData.businessName} onChange={handleChange}
               className="w-full px-3 py-2 rounded-md bg-gray-800 text-white focus:ring-2 focus:ring-blue-500" placeholder="John" />
+            {errors.businessName && <p className="text-red-500 text-sm mt-1">{errors.businessName}</p>}
           </div>
           <div>
             <label className="block mb-1 md:mb-2 text-sm font-medium text-gray-900">Full Name</label>
             <input name="fullName" type="text" value={formData.fullName} onChange={handleChange}
               className="w-full px-3 py-2 rounded-md bg-gray-800 text-white focus:ring-2 focus:ring-blue-500" placeholder="Doe" />
+            {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>}
           </div>
         </div>
 
@@ -58,11 +81,13 @@ export default function ContactUs() {
             <label className="block mb-1 md:mb-2 text-sm font-medium text-gray-900">WhatsApp number</label>
             <input name="number" type="text" value={formData.number} onChange={handleChange}
               className="w-full px-3 py-2 rounded-md bg-gray-800 text-white focus:ring-2 focus:ring-blue-500" placeholder="123-45-678" />
+            {errors.number && <p className="text-red-500 text-sm mt-1">{errors.number}</p>}
           </div>
           <div>
             <label className="block mb-1 md:mb-2 text-sm font-medium text-gray-900">Email address</label>
             <input name="email" type="email" value={formData.email} onChange={handleChange}
               className="w-full px-3 py-2 rounded-md bg-gray-800 text-white focus:ring-2 focus:ring-blue-500" placeholder="john.doe@company.com" />
+            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
           </div>
         </div>
 
@@ -70,17 +95,25 @@ export default function ContactUs() {
           <label className="block mb-1 md:mb-2 text-sm font-medium text-gray-900">Subject</label>
           <input name="subject" type="text" value={formData.subject} onChange={handleChange}
             className="w-full px-3 py-2 rounded-md bg-gray-800 text-white focus:ring-2 focus:ring-blue-500" placeholder="Enter subject" />
+          {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
         </div>
 
         <div>
           <label className="block mb-1 md:mb-2 text-sm font-medium text-gray-900">Message</label>
           <textarea name="userMessage" rows={4} value={formData.userMessage} onChange={handleChange}
             className="w-full px-3 py-2 rounded-md bg-gray-800 text-white focus:ring-2 focus:ring-blue-500" placeholder="Write your message..." />
+          {errors.userMessage && <p className="text-red-500 text-sm mt-1">{errors.userMessage}</p>}
         </div>
 
         <button type="submit" className="w-full bg-blue-600 text-white py-2 md:py-3 rounded-md font-semibold hover:bg-blue-700 transition">
           Send Message
         </button>
+
+        {confirmation && (
+          <div className="mt-4 p-3 rounded-md bg-green-100 text-green-800 text-sm font-medium">
+            {confirmation}
+          </div>
+        )}
       </form>
 
       {/* Contact Info */}
@@ -100,8 +133,6 @@ export default function ContactUs() {
           </p>
         </div>
       </div>
-
-      
     </div>
   );
 }
