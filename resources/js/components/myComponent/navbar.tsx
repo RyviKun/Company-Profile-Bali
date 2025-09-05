@@ -10,7 +10,7 @@ interface NavbarProps {
 
 export default function Navbar({ navigation, children }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
-
+  
   return (
     <>
       <nav
