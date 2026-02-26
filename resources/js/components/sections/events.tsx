@@ -4,18 +4,21 @@ export default function EventsSection() {
       date: "20 - 22 August 2026",
       time: "7:00 pm - 10:00 pm",
       title: "B2B Exhibitions & Conventions",
+      description: "Business to business exhibition and conventions",
       img: "/images/event/1.jpg",
     },
     {
       date: "20 - 22 August 2026",
       time: "7:00 pm",
-      title: "Product Launches",
-      img: "/images/event/2.png",
+      title: "Indonesia Collector Festival",
+      description: "( will be held on 18 - 21 June 2026 )",
+      img: "/images/event/2.jpeg",
     },
     {
       date: "20 - 22 August 2026",
       time: "7:00 pm - 10:00 pm",
       title: "Private & Social Events",
+      description: "Private and social Events",
       img: "/images/event/3.jpg",
     },
 
@@ -52,6 +55,7 @@ export default function EventsSection() {
               {/* <div className="text-sm text-gray-500">{event.date}</div>
               <div className="text-sm text-gray-500">{event.time}</div> */}
               <h3 className="mt-2 font-semibold text-lg">{event.title}</h3>
+              <h3 className="mt-2 font-normal text-base">{event.description}</h3>
             </div>
           </div>
         ))}

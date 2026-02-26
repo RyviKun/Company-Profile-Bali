@@ -13,10 +13,10 @@ export default function Experience() {
       image: "/images/experience/2.png",
     },
     {
-      title: "Creative Strategy Meets Operational Precision",
+      title: "Indonesia Collector Festival",
       description:
-        "We bridge bold creative concepts with airtight logistics—from ideation to post-event analytics, managing every detail for maximum impact.",
-      image: "/images/experience/3.png",
+        "Indonesia Collectors Festival 2025 was a multi-day pop culture and hobby marketplace at Grand City Mall Surabaya, bringing together collectors, communities, and brands. Following strong engagement and positive feedback, ICF 2026 will return on a larger scale at the Main Atrium.",
+      image: "/images/experience/3.jpeg",
     },
     {
       title: "Trusted by Leading Brands",
