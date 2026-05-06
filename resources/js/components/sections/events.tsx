@@ -25,7 +25,7 @@ export default function EventsSection() {
             date: '17 - 19 September 2026',
             time: '7:00 pm - 10:00 pm',
             title: 'Clean Tech & Hotel Expo Indonesia',
-            description: 'Smart cleaning - Sustainable hospitality and future technology',
+            description: '( will be held on 17 - 19 September 2026 )',
             img: '/images/event/4.png',
         },
     ];
