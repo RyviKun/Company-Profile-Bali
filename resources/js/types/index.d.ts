@@ -1,13 +1,9 @@
+import { PageProps as InertiaPageProps } from '@inertiajs/core';
 import { LucideIcon } from 'lucide-react';
 import type { Config } from 'ziggy-js';
 
 export interface Auth {
     user: User;
-}
-
-export interface BreadcrumbItem {
-    title: string;
-    href: string;
 }
 
 export interface NavGroup {
@@ -40,4 +36,50 @@ export interface User {
     created_at: string;
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
+}
+export interface BreadcrumbItem {
+    label: string;
+    url: string | null;
+}
+export interface PageProps extends InertiaPageProps {
+    breadcrumbs?: BreadcrumbItem[];
+}
+
+export interface Event {
+    id: number;
+    title: string;
+    slug: string;
+    content: string | null; // HTML content from the database
+    shortDescription: string | null;
+    capacity: number | null;
+    address: string | null;
+    googleMapsLink: string | null;
+    start_date: string | null; // ISO 8601 date string (from Laravel)
+    end_date: string | null;
+    status: 'draft' | 'published' | 'cancelled' | 'completed'; // Union type for safety
+    gallery: GalleryItem[] | null; // Array of gallery objects
+    created_at: string;
+    updated_at: string;
+    deleted_at: string | null; // Soft deletes
+}
+
+export interface GalleryItem {
+    src: string;
+    alt: string;
+    description: string;
+}
+
+export interface PaginatedData<T> {
+    data: T[];
+    links: {
+        url: string | null;
+        label: string;
+        active: boolean;
+    }[];
+    meta: {
+        current_page: number;
+        last_page: number;
+        per_page: number;
+        total: number;
+    };
 }

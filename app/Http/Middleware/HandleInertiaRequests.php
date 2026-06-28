@@ -51,14 +51,53 @@ class HandleInertiaRequests extends Middleware
                 'location' => $request->url(),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'breadcrumbs' => fn () => $this->generateBreadcrumbs($request)
         ];
     }
 
-    public function title(Request $request): string
+    private function generateBreadcrumbs(Request $request): array
     {
-        return fn ($title = '') => $title
-            ? "$title - Media Expo Indonesia"
-            : 'Media Expo Indonesia';
+        $routeName = $request->route()->getName();
+        $breadcrumbs = [];
+
+        // Always start with Home
+        $breadcrumbs[] = [
+            'label' => 'Home',
+            'url' => route('home'),
+        ];
+
+        // The match statement MUST be INSIDE this method
+        match ($routeName) {
+            'aboutus' => $breadcrumbs[] = [
+                'label' => 'About Us',
+                'url' => route('aboutus'),
+            ],
+            'event.show' => $this->addEventBreadcrumbs($request, $breadcrumbs),
+            'event' => $breadcrumbs[] = [
+                'label' => 'Events',
+                'url' => route('event'),
+            ],
+            default => null,
+        };
+
+        return $breadcrumbs;
+    }
+
+    private function addEventBreadcrumbs(Request $request, array &$breadcrumbs): void
+    {
+        $breadcrumbs[] = ['label' => 'Events', 'url' => route('event')];
+        $event = $request->route('slug'); // Or fetch the actual model if passed
+
+        $slug = $request->route('slug');
+        if ($slug) {
+            $eventModel = \App\Models\Event::where('slug', $slug)->first();
+            if ($eventModel) {
+                $breadcrumbs[] = [
+                    'label' => $eventModel->title,
+                    'url' => null, // Current page
+                ];
+            }
+        }
     }
 
 }

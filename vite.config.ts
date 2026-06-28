@@ -2,7 +2,9 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import laravel from 'laravel-vite-plugin';
 import { resolve } from 'node:path';
+import path from 'path';
 import { defineConfig } from 'vite';
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
     plugins: [
@@ -13,6 +15,7 @@ export default defineConfig({
         }),
         react(),
         tailwindcss(),
+        svgr(),
     ],
     esbuild: {
         jsx: 'automatic',
@@ -20,6 +23,7 @@ export default defineConfig({
     resolve: {
         alias: {
             'ziggy-js': resolve(__dirname, 'vendor/tightenco/ziggy'),
+            '@': path.resolve(__dirname, 'resources/js'),
         },
     },
 });
