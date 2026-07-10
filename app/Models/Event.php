@@ -15,4 +15,9 @@ class Event extends Model
         'end_date' => 'datetime',
         'gallery' => 'array', // <-- JSON becomes array of objects
     ];
+
+        public function registrations()
+    {
+        return $this->hasMany(Registration::class);
+    }
 }

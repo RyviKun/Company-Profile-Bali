@@ -11,9 +11,9 @@ const partners: Partner[] = [
     { name: 'Info Festival Indonesia', logo: '/images/carouselMediaPartner/festival_indonesia.jpeg' },
     { name: 'Gameco News', logo: '/images/carouselMediaPartner/gameco_news.jpeg' },
     { name: 'Ivent Media', logo: '/images/carouselMediaPartner/ivent_media.jpeg' },
-    { name: 'Vibes Media ID', logo: '/images/carouselMediaPartner/vibes_media_id' },
-    { name: 'ZRY Gallery', logo: '/images/carouselMediaPartner/ZRY_gallery' },
-    { name: 'GAC Media', logo: '/images/carouselMediaPartner/GAC_media' },
+    { name: 'Vibes Media ID', logo: '/images/carouselMediaPartner/vibes_media_id.jpeg' },
+    { name: 'ZRY Gallery', logo: '/images/carouselMediaPartner/ZRY_gallery.jpeg' },
+    { name: 'GAC Media', logo: '/images/carouselMediaPartner/GAC_media.jpeg' },
 ];
 
 export default function SupportedBy({ className = '' }: { className: String }) {
