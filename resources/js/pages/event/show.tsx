@@ -3,6 +3,7 @@ import Seo from '@/components/Seo';
 import StructuredData from '@/components/StructuredData';
 import { formatEventDateRange } from '@/helpers/date';
 import { Event } from '@/types';
+import { Link } from '@inertiajs/react';
 import { Calendar, MapPin } from 'lucide-react';
 
 interface Props {
@@ -108,6 +109,14 @@ export default function EventShow({ event }: Props) {
                                         Open in Google Maps
                                     </a>
                                 )}
+
+                                {/* Register Now button – visible on desktop */}
+                                <Link
+                                    href={route('registrations.create', { event: event.id })}
+                                    className="hidden w-full rounded-lg bg-blue-600 px-6 py-3 text-center font-semibold text-white transition hover:bg-blue-700 lg:inline-block"
+                                >
+                                    Register Now
+                                </Link>
                             </div>
                         </div>
                     </div>

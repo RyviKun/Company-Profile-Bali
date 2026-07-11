@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    
+    <!-- Static Pages -->
+    <url>
+        <loc>https://mediaexpoindonesia.site/</loc>
+        <priority>1.0</priority>
+        <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+        <loc>https://mediaexpoindonesia.site/aboutus</loc>
+        <priority>0.8</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+    
+    <url>
+        <loc>https://mediaexpoindonesia.site/event</loc>
+        <priority>0.9</priority>
+        <changefreq>daily</changefreq>
+    </url>
+
+    <!-- Event Detail Pages -->
+    <url>
+        <loc>https://mediaexpoindonesia.site/event/bali-business-summit-networking-gala-2026</loc>
+        <priority>0.7</priority>
+        <changefreq>weekly</changefreq>
+        <lastmod>2026-09-01</lastmod>
+    </url>
+
+    <url>
+        <loc>https://mediaexpoindonesia.site/event/cleantech-hotel-expo-2026</loc>
+        <priority>0.7</priority>
+        <changefreq>weekly</changefreq>
+        <lastmod>2026-09-01</lastmod>
+    </url>
+
+    <!-- Add more events here as needed -->
+</urlset>

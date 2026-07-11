@@ -8,12 +8,16 @@ const rows = [
         title: 'Exceptional Event Strategy',
         body: "With 10+ years in the industry, we've executed over 500 events across Indonesia—from high-stakes corporate launches to intimate brand activations. Our strategic approach ensures that every event is a step toward your growth.",
         imageFirst: true,
+        imgSrc: '/images/experience/1.JPG',
+        alt: 'Strategize your event',
     },
     {
         number: '02.',
         title: 'B2B Networking Hub',
         body: "Indonesia's dynamic business landscape requires deep local knowledge. We bridge the gap between global standards and local expertise, providing a platform where businesses connect and thrive.",
         imageFirst: false,
+        imgSrc: '/images/experience/2.JPG',
+        alt: 'Networking Hub',
     },
 ];
 
@@ -23,33 +27,6 @@ const stats = [
     { value: '150+', label: 'B2B PARTNERS' },
     { value: '98%', label: 'CLIENT SATISFACTION' },
 ];
-
-function PromoImage() {
-    return (
-        <div className="relative flex h-full min-h-[300px] w-full flex-col overflow-hidden bg-gradient-to-br from-[#0c0c0c] via-[#161310] to-[#0c0c0c] p-6">
-            {/* decorative gold accents */}
-            <div className="pointer-events-none absolute top-0 -left-6 h-full w-24 rounded-full border-l-2 border-amber-400/40" />
-            <div className="pointer-events-none absolute top-6 right-6 h-16 w-16 rounded-full border border-amber-300/30" />
-
-            <h3 className="relative z-10 mb-2 font-serif text-2xl leading-tight font-bold text-amber-200 sm:text-3xl">
-                10 World-Famous Event
-                <br />
-                Planning Companies
-            </h3>
-            <span className="relative z-10 mb-5 inline-flex w-fit items-center rounded-full border border-amber-300/50 px-4 py-1.5 text-xs font-medium tracking-wide text-amber-100">
-                TO INSPIRE YOUR NEXT EVENT
-            </span>
-
-            <div className="relative z-10 mt-auto overflow-hidden rounded-xl border-2 border-amber-300/60">
-                <img
-                    src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=700&q=80"
-                    alt="Business professionals networking near a window"
-                    className="h-40 w-full object-cover sm:h-48"
-                />
-            </div>
-        </div>
-    );
-}
 
 export default function AboutUs() {
     const navigationProps = [
@@ -90,8 +67,9 @@ export default function AboutUs() {
                                     {row.imageFirst ? (
                                         <>
                                             <div className="w-full sm:w-1/2">
-                                                <PromoImage />
+                                                <img src={row.imgSrc} alt={row.alt} className="h-full w-full object-cover" />
                                             </div>
+
                                             <div className="flex w-full flex-col justify-center px-8 py-10 sm:w-1/2 sm:px-14">
                                                 <span className="mb-2 text-4xl font-bold text-slate-200">{row.number}</span>
                                                 <h3 className="mb-4 text-2xl font-bold text-slate-900">{row.title}</h3>
@@ -106,7 +84,7 @@ export default function AboutUs() {
                                                 <p className="leading-relaxed text-slate-500">{row.body}</p>
                                             </div>
                                             <div className="w-full sm:w-1/2">
-                                                <PromoImage />
+                                                <img src={row.imgSrc} alt={row.alt} className="h-full w-full object-cover" />
                                             </div>
                                         </>
                                     )}
