@@ -75,6 +75,11 @@ export default function Create({ event }: Props) {
         >
             <div className="min-h-screen bg-gray-50 py-12">
                 <div className="mx-auto max-w-3xl rounded-lg bg-white p-6 shadow md:p-8">
+                    <img
+                        src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1600&q=80"
+                        alt="Illuminated architectural ceiling at the venue"
+                        className="mb-4 h-40 w-full rounded-2xl object-cover opacity-70"
+                    />
                     <h1 className="mb-2 text-2xl font-bold text-gray-900">Register for: {event.title}</h1>
                     <p className="mb-6 text-gray-500">Please fill in all required fields</p>
 

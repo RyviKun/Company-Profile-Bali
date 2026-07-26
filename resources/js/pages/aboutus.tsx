@@ -8,7 +8,7 @@ const rows = [
         title: 'Exceptional Event Strategy',
         body: "With 10+ years in the industry, we've executed over 500 events across Indonesia—from high-stakes corporate launches to intimate brand activations. Our strategic approach ensures that every event is a step toward your growth.",
         imageFirst: true,
-        imgSrc: '/images/experience/1.JPG',
+        imgSrc: '/images/experience/1.jpg',
         alt: 'Strategize your event',
     },
     {
@@ -16,7 +16,7 @@ const rows = [
         title: 'B2B Networking Hub',
         body: "Indonesia's dynamic business landscape requires deep local knowledge. We bridge the gap between global standards and local expertise, providing a platform where businesses connect and thrive.",
         imageFirst: false,
-        imgSrc: '/images/experience/2.JPG',
+        imgSrc: '/images/experience/2.jpg',
         alt: 'Networking Hub',
     },
 ];
