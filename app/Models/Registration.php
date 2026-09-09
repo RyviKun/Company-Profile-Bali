@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Registration extends Model
 {
@@ -15,14 +16,20 @@ class Registration extends Model
         'address',
         'province',
         'telephone',
-        'mobile',
         'language',
         'job_position',
         'status',
-        'checked_in_at',
         'qr_token',
     ];
 
+ 
+
+    protected static function booted()
+    {
+        static::creating(function ($registration) {
+            $registration->qr_token = Str::uuid()->toString();
+        });
+    }
     public function event()
     {
         return $this->belongsTo(Event::class);

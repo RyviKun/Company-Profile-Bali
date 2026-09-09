@@ -43,6 +43,13 @@ export interface BreadcrumbItem {
 }
 export interface PageProps extends InertiaPageProps {
     breadcrumbs?: BreadcrumbItem[];
+    flash?: {
+        success?: string;
+        error?: string;
+        qr_code?: string; // ← add this
+        registrant_name?: string; // ← add this
+        [key: string]: any; // optional, for other flash keys
+    };
 }
 
 export interface Event {
@@ -54,10 +61,15 @@ export interface Event {
     capacity: number | null;
     address: string | null;
     googleMapsLink: string | null;
-    start_date: string | null; // ISO 8601 date string (from Laravel)
-    end_date: string | null;
+    start_date: string; // ISO 8601 date string (from Laravel)
+    end_date: string;
     status: 'draft' | 'published' | 'cancelled' | 'completed'; // Union type for safety
     gallery: GalleryItem[] | null; // Array of gallery objects
+    hasVip: boolean;
+    price: number;
+    earlyBirdPrice: number;
+    earlyBirdDate: string;
+    isRegisterable: string;
     created_at: string;
     updated_at: string;
     deleted_at: string | null; // Soft deletes

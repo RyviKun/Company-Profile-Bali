@@ -1,10 +1,11 @@
 import AppLayout from '@/components/layout/appLayout';
 import Seo from '@/components/Seo';
 import StructuredData from '@/components/StructuredData';
-import { formatEventDateRange } from '@/helpers/date';
-import { Event } from '@/types';
-import { Link } from '@inertiajs/react';
+import { formatEventDateRange, isDatePassed } from '@/helpers/date';
+import { Event, PageProps } from '@/types';
+import { Link, usePage } from '@inertiajs/react';
 import { Calendar, MapPin } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 interface Props {
     event: Event; // <-- THIS IS THE CORRECT TYPE
@@ -15,6 +16,21 @@ const navigationProps = [
     { title: 'Event', href: '/event' },
 ];
 export default function EventShow({ event }: Props) {
+    const { flash } = usePage<PageProps>().props;
+    const [showModal, setShowModal] = useState(false);
+    const [qrCode, setQrCode] = useState<string | null>(null);
+    const [registrantName, setRegistrantName] = useState('');
+
+    useEffect(() => {
+        console.log('Flash data:', flash);
+        console.log(event);
+        if (flash?.qr_code) {
+            setQrCode(flash.qr_code);
+            setRegistrantName(flash.registrant_name || '');
+            setShowModal(true);
+        }
+    }, [flash]);
+
     return (
         <>
             <Seo
@@ -111,17 +127,41 @@ export default function EventShow({ event }: Props) {
                                 )}
 
                                 {/* Register Now button – visible on desktop */}
-                                <Link
-                                    href={route('registrations.create', { event: event.id })}
-                                    className="w-full rounded-lg bg-blue-600 px-6 py-3 text-center font-semibold text-white transition hover:bg-blue-700 lg:inline-block"
-                                >
-                                    Register Now
-                                </Link>
+                                {event.isRegisterable && (
+                                    <>
+                                        <Link
+                                            href={route('registrations.create', { event: event.id })}
+                                            className={`${isDatePassed(event.start_date) ? 'pointer-events-none bg-gray-500' : 'bg-blue-600'} w-full rounded-lg px-6 py-3 text-center font-semibold text-white transition hover:bg-blue-700 lg:inline-block`}
+                                        >
+                                            {isDatePassed(event.start_date) ? <p>Registration has been closed</p> : <p>Register Now</p>}
+                                        </Link>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>
                 </div>
             </AppLayout>
+            {showModal && qrCode && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                    <div className="max-w-md rounded-lg bg-white p-6 shadow-xl">
+                        <h2 className="mb-2 text-2xl font-bold text-gray-900">Registration Successful!</h2>
+                        <p className="mb-4 text-gray-600">
+                            Thank you, <strong>{registrantName}</strong>! You are now registered for <strong>{event.title}</strong>.
+                        </p>
+                        <div className="flex justify-center">
+                            <img src={`data:image/png;base64,${qrCode}`} alt="Your QR Code" className="h-48 w-48" />
+                        </div>
+                        <p className="mt-4 text-sm text-gray-500">Please save this QR code – you'll need it at the event entrance.</p>
+                        <button
+                            onClick={() => setShowModal(false)}
+                            className="mt-4 w-full rounded-lg bg-blue-600 py-2 font-semibold text-white hover:bg-blue-700"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

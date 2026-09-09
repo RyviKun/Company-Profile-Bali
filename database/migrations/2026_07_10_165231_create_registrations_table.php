@@ -14,18 +14,22 @@ return new class extends Migration
     Schema::create('registrations', function (Blueprint $table) {
         $table->id();
         $table->foreignId('event_id')->constrained()->onDelete('cascade');
-        $table->string('title')->nullable(); // Mr, Ms, Dr, etc.
+        $table->string('title')->nullable();
         $table->string('name');
         $table->string('email');
         $table->string('company_name')->nullable();
         $table->text('address')->nullable();
         $table->string('province')->nullable();
         $table->string('telephone')->nullable();
-        $table->string('mobile')->nullable();
-        $table->string('language')->nullable(); // English, Indonesian, etc.
+        $table->string('language')->nullable();
         $table->string('job_position')->nullable();
-        $table->string('status')->default('pending'); // pending, confirmed, cancelled
+        $table->string('status')->default('pending');
+        $table->string('qr_token')->nullable()->unique();
         $table->timestamps();
+
+        // 👇 Unique constraints per event
+        $table->unique(['event_id', 'email']);
+        $table->unique(['event_id', 'telephone']);
     });
 }
 

@@ -33,4 +33,8 @@ Route::post('/mail', function (Request $request) {
 
 });
 
+use App\Http\Controllers\RegistrationController;
+
+Route::get('/check/{token}', [RegistrationController::class, 'checkToken']);
+
 

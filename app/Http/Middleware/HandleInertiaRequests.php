@@ -51,7 +51,14 @@ class HandleInertiaRequests extends Middleware
                 'location' => $request->url(),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
-            'breadcrumbs' => fn () => $this->generateBreadcrumbs($request)
+            'breadcrumbs' => fn () => $this->generateBreadcrumbs($request),
+            'flash' => [
+                'success' => fn () => $request->session()->get('success'),
+                'error' => fn () => $request->session()->get('error'),
+                // 👇 Add these lines
+                'qr_code' => fn () => $request->session()->get('qr_code'),
+                'registrant_name' => fn () => $request->session()->get('registrant_name'),
+            ],
         ];
     }
 
