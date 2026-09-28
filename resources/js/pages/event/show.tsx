@@ -54,7 +54,7 @@ export default function EventShow({ event }: Props) {
             <AppLayout navigation={navigationProps}>
                 <div className="min-h-screen bg-white font-sans text-slate-800">
                     {/* Hero banner */}
-                    <div className="relative h-[560px] w-full overflow-hidden bg-slate-950 sm:h-[420px]">
+                    <div className="relative h-[400px] w-full overflow-hidden bg-slate-950 sm:h-[420px]">
                         <img
                             src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1600&q=80"
                             alt="Illuminated architectural ceiling at the venue"
@@ -88,6 +88,14 @@ export default function EventShow({ event }: Props) {
                                     </div>
                                 </div>
                             </div>
+                            {event.isRegisterable && (
+                                <Link
+                                    href={route('registrations.create', { event: event.id })}
+                                    className={`${isDatePassed(event.start_date) ? 'pointer-events-none bg-gray-500' : 'bg-blue-600'} mt-5 inline-block w-full rounded-lg px-6 py-3 text-center font-semibold text-white transition hover:bg-blue-700 lg:hidden`}
+                                >
+                                    {isDatePassed(event.start_date) ? 'Registration has been closed' : 'Register Now'}
+                                </Link>
+                            )}
                         </div>
                     </div>
 
@@ -128,14 +136,12 @@ export default function EventShow({ event }: Props) {
 
                                 {/* Register Now button – visible on desktop */}
                                 {event.isRegisterable && (
-                                    <>
-                                        <Link
-                                            href={route('registrations.create', { event: event.id })}
-                                            className={`${isDatePassed(event.start_date) ? 'pointer-events-none bg-gray-500' : 'bg-blue-600'} w-full rounded-lg px-6 py-3 text-center font-semibold text-white transition hover:bg-blue-700 lg:inline-block`}
-                                        >
-                                            {isDatePassed(event.start_date) ? <p>Registration has been closed</p> : <p>Register Now</p>}
-                                        </Link>
-                                    </>
+                                    <Link
+                                        href={route('registrations.create', { event: event.id })}
+                                        className={`${isDatePassed(event.start_date) ? 'pointer-events-none bg-gray-500' : 'bg-blue-600'} mt-5 hidden w-full rounded-lg px-6 py-3 text-center font-semibold text-white transition hover:bg-blue-700 lg:inline-block`}
+                                    >
+                                        {isDatePassed(event.start_date) ? 'Registration has been closed' : 'Register Now'}
+                                    </Link>
                                 )}
                             </div>
                         </div>

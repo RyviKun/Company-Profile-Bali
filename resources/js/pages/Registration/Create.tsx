@@ -139,17 +139,6 @@ export default function Create({ event }: Props) {
                                 {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
                             </div>
 
-                            {/* Company Name */}
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">Company Name</label>
-                                <input
-                                    type="text"
-                                    value={data.company_name}
-                                    onChange={(e) => setData('company_name', e.target.value)}
-                                    className="mt-1 w-full rounded-lg border px-3 py-2"
-                                />
-                            </div>
-
                             {/* Address */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Address</label>
@@ -194,40 +183,6 @@ export default function Create({ event }: Props) {
                                         />
                                     </div>
                                 </div>
-                            </div>
-
-                            {/* Language */}
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">Language</label>
-                                <select
-                                    value={data.language}
-                                    onChange={(e) => setData('language', e.target.value)}
-                                    className="mt-1 w-full rounded-lg border px-3 py-2"
-                                >
-                                    <option value="">-- Select Language --</option>
-                                    {LANGUAGES.map((l) => (
-                                        <option key={l} value={l}>
-                                            {l}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            {/* Job Position */}
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">Job Position</label>
-                                <select
-                                    value={data.job_position}
-                                    onChange={(e) => setData('job_position', e.target.value)}
-                                    className="mt-1 w-full rounded-lg border px-3 py-2"
-                                >
-                                    <option value="">-- Select Job Position --</option>
-                                    {JOB_POSITIONS.map((j) => (
-                                        <option key={j} value={j}>
-                                            {j}
-                                        </option>
-                                    ))}
-                                </select>
                             </div>
 
                             <div>
