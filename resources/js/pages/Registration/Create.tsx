@@ -257,7 +257,7 @@ export default function Create({ event }: Props) {
                                             onChange={(e) => setData('isVip', true)}
                                         />
                                         <span className="ml-2">
-                                            VIP {event.slug === 'indonesia-collectors-festival-december-2026' ? '(entry time 11.00-20.00)' : null} -
+                                            VIP {event.slug === 'indonesia-collectors-festival-december-2026' ? '(entry time 10.00-20.00)' : null} -
                                             Get a chance to join our giveaway
                                             {' ('}
                                             <span className="text-gray-500">
@@ -271,19 +271,7 @@ export default function Create({ event }: Props) {
                                 )}
                                 {data.isVip && (
                                     <div className="mt-2 ml-6 rounded-lg bg-gray-50 p-3 text-sm text-gray-600">
-                                        <p>
-                                            Please transfer the payment to the following bank account:
-                                            <p className="mb-4 font-bold">
-                                                8131770201 {'('} BNI {')'} MEDIA EXPO INDONESIA
-                                            </p>{' '}
-                                            Then upload your payment receipt to <span className="font-bold">+6285297988227</span> and provide your
-                                            email and telephone number.
-                                        </p>
-
-                                        <p className="mt-1 text-gray-500">Example : myname@gmail.com - 0123345678</p>
-                                        <p className="mt-1 text-red-500">
-                                            Note : If you do not submit your payment, we will not proceed your VIP ticket.
-                                        </p>
+                                        <p>Payment will be collected at the event. Please pay at the registration desk upon arrival.</p>
                                     </div>
                                 )}
                             </div>
