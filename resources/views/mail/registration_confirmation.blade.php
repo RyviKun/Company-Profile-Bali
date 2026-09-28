@@ -5,7 +5,14 @@
 </head>
 <body>
     <h2>Thank you for registering, {{ $registration->name }}!</h2>
-    <p>You have successfully registered for <strong>{{ $registration->event->title }}</strong>.</p>
+    @if($registration->isVip)
+        <p style="display:inline-block; background:#d4af37; color:#000; padding:6px 14px; border-radius:4px; font-weight:bold;">
+            ⭐ VIP
+        </p>
+        <p>You have successfully registered as a <strong>VIP guest</strong> for <strong>{{ $registration->event->title }}</strong>. Please pay at booth at the time of arrival</p>
+    @else
+        <p>You have successfully registered for <strong>{{ $registration->event->title }}</strong>.</p>
+    @endif
 
     <h3>Your QR Code for Check‑in</h3>
     <img src="data:image/png;base64,{{ base64_encode($qrImageData) }}" alt="QR Code" style="width:200px;height:200px;">

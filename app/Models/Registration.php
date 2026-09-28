@@ -20,6 +20,7 @@ class Registration extends Model
         'job_position',
         'status',
         'qr_token',
+        'isVip'
     ];
 
  

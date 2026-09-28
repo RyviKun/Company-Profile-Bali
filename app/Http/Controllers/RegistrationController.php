@@ -54,6 +54,7 @@ class RegistrationController extends Controller
             ],
             'language' => 'nullable|string|max:50',
             'job_position' => 'nullable|string|max:100',
+            'isVip' => 'boolean',
         ], [
             'email.unique' => 'This email is already registered in this event.',
             'telephone.unique' => 'This phone number is already registered for this event.',
