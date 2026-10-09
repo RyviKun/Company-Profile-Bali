@@ -56,8 +56,8 @@ export default function EventShow({ event }: Props) {
                     {/* Hero banner */}
                     <div className="relative h-[400px] w-full overflow-hidden bg-slate-950 sm:h-[420px]">
                         <img
-                            src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1600&q=80"
-                            alt="Illuminated architectural ceiling at the venue"
+                            src={event.gallery?.[0].src}
+                            alt={event.gallery?.[0].description}
                             className="absolute inset-0 h-full w-full object-cover opacity-70"
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-transparent" />
