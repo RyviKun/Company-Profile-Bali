@@ -54,7 +54,7 @@ export default function EventShow({ event }: Props) {
             <AppLayout navigation={navigationProps}>
                 <div className="min-h-screen bg-white font-sans text-slate-800">
                     {/* Hero banner */}
-                    <div className="relative h-[400px] w-full overflow-hidden bg-slate-950 sm:h-[420px]">
+                    <div className="relative h-fit max-h-[900px] min-h-[400px] w-full overflow-hidden bg-slate-950 sm:h-[420px]">
                         <img
                             src={event.gallery?.[0].src}
                             alt={event.gallery?.[0].description}
@@ -63,7 +63,7 @@ export default function EventShow({ event }: Props) {
                         <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-transparent" />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
 
-                        <div className="relative mx-auto flex h-full max-w-[1440px] flex-col justify-center px-6 sm:px-10">
+                        <div className="relative mx-auto flex h-fit max-w-[1440px] flex-col justify-center px-6 py-10 sm:px-10">
                             {/* Title */}
                             <h1 className="mb-7 text-5xl leading-[1.05] font-extrabold tracking-tight text-white sm:text-6xl">{event.title}</h1>
 

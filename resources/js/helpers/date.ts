@@ -1,25 +1,40 @@
 export function formatEventDateRange(startDate: string | null, endDate: string | null): string {
     if (!startDate) return 'TBD';
 
-    const start = new Date(startDate);
-    const end = endDate ? new Date(endDate) : null;
+    // Normalize string format so JS reliably parses as UTC
+    const parseUTC = (dateStr: string) => {
+        const isoStr = dateStr.includes('T') ? dateStr : dateStr.replace(' ', 'T');
+        const utcStr = isoStr.endsWith('Z') || isoStr.includes('+') ? isoStr : `${isoStr}Z`;
+        return new Date(utcStr);
+    };
 
-    if (!end) {
-        return start.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    const start = parseUTC(startDate);
+    const end = endDate ? parseUTC(endDate) : null;
+
+    if (isNaN(start.getTime())) return 'TBD';
+
+    if (!end || isNaN(end.getTime())) {
+        return start.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            timeZone: 'UTC',
+        });
     }
 
-    const startMonth = start.toLocaleString('en-US', { month: 'short' });
-    const startDay = start.getDate();
-    const endDay = end.getDate();
-    const year = start.getFullYear();
+    // Force formatting to use UTC instead of local machine timezone
+    const startMonth = start.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
+    const startDay = start.getUTCDate();
+    const endDay = end.getUTCDate();
+    const year = start.getUTCFullYear();
 
     // Same month
-    if (start.getMonth() === end.getMonth()) {
+    if (start.getUTCMonth() === end.getUTCMonth()) {
         return `${startMonth} ${startDay}-${endDay}, ${year}`;
     }
 
     // Different months
-    const endMonth = end.toLocaleString('en-US', { month: 'short' });
+    const endMonth = end.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
     return `${startMonth} ${startDay} - ${endMonth} ${endDay}, ${year}`;
 }
 
