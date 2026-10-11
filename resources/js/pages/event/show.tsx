@@ -1,3 +1,4 @@
+import EventCountdown from '@/components/EventCountdown';
 import AppLayout from '@/components/layout/appLayout';
 import Seo from '@/components/Seo';
 import StructuredData from '@/components/StructuredData';
@@ -102,7 +103,13 @@ export default function EventShow({ event }: Props) {
                     <div className="mx-auto max-w-[1240px] px-6 py-12 sm:px-10">
                         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_360px]">
                             {/* Left column */}
-                            <div dangerouslySetInnerHTML={{ __html: event.content ?? '' }} />
+                            <>
+                                <div className="lg:hidden">
+                                    <EventCountdown startDate={event.start_date} endDate={event.end_date} location={event.address} />
+                                </div>
+                                <div dangerouslySetInnerHTML={{ __html: event.content ?? '' }} />
+                            </>
+
                             {/* Right column */}
                             <div className="flex flex-col gap-6">
                                 <div className="relative overflow-hidden rounded-2xl bg-slate-200">
@@ -143,6 +150,9 @@ export default function EventShow({ event }: Props) {
                                         {isDatePassed(event.start_date) ? 'Registration has been closed' : 'Register Now'}
                                     </Link>
                                 )}
+                                <div className="hidden lg:block">
+                                    <EventCountdown startDate={event.start_date} endDate={event.end_date} location={event.address} />
+                                </div>
                             </div>
                         </div>
                     </div>
