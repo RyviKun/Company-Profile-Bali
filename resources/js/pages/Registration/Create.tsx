@@ -198,7 +198,7 @@ export default function Create({ event }: Props) {
                                     />
 
                                     <span className="ml-2">
-                                        Normal {event.slug === 'indonesia-collectors-festival-december-2026' ? '(entry time 11.00-20.00)' : null}
+                                        Normal {event.slug === 'indonesia-collectors-festival-december-2026' ? '(entry time 10.00-20.00)' : null}
                                     </span>
                                 </div>
                                 {/* IsVIP */}
