@@ -1,13 +1,13 @@
 {
-  "_Seo-Diy66m63.js": {
-    "file": "assets/Seo-Diy66m63.js",
+  "_Seo-Jhl7RwkS.js": {
+    "file": "assets/Seo-Jhl7RwkS.js",
     "name": "Seo",
     "imports": [
       "resources/js/app.tsx"
     ]
   },
-  "_appLayout-sBVLiMsb.js": {
-    "file": "assets/appLayout-sBVLiMsb.js",
+  "_appLayout-tl-ctYhZ.js": {
+    "file": "assets/appLayout-tl-ctYhZ.js",
     "name": "appLayout",
     "imports": [
       "resources/js/app.tsx"
@@ -17,15 +17,15 @@
     "file": "assets/date-CvTBNb8s.js",
     "name": "date"
   },
-  "_map-pin-C6vavN-8.js": {
-    "file": "assets/map-pin-C6vavN-8.js",
+  "_map-pin-BP7WCggL.js": {
+    "file": "assets/map-pin-BP7WCggL.js",
     "name": "map-pin",
     "imports": [
-      "_appLayout-sBVLiMsb.js"
+      "_appLayout-tl-ctYhZ.js"
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app-DUPly5x1.css",
+    "file": "assets/app-DPRvsQsC.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "names": [
@@ -33,7 +33,7 @@
     ]
   },
   "resources/js/app.tsx": {
-    "file": "assets/app-Cv4P08BY.js",
+    "file": "assets/app-CIqHl1B_.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -45,83 +45,83 @@
       "resources/js/pages/homepage.tsx"
     ],
     "css": [
-      "assets/app-DUPly5x1.css"
+      "assets/app-DPRvsQsC.css"
     ]
   },
   "resources/js/pages/Registration/Create.tsx": {
-    "file": "assets/Create-BZdVpYDD.js",
+    "file": "assets/Create-cPtkA5Vs.js",
     "name": "Create",
     "src": "resources/js/pages/Registration/Create.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_appLayout-sBVLiMsb.js",
+      "_appLayout-tl-ctYhZ.js",
       "_date-CvTBNb8s.js"
     ],
     "css": [
-      "assets/app-DUPly5x1.css"
+      "assets/app-DPRvsQsC.css"
     ]
   },
   "resources/js/pages/aboutus.tsx": {
-    "file": "assets/aboutus-D1G1R6Ox.js",
+    "file": "assets/aboutus-BJXgbeGK.js",
     "name": "aboutus",
     "src": "resources/js/pages/aboutus.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_appLayout-sBVLiMsb.js",
-      "_Seo-Diy66m63.js"
+      "_appLayout-tl-ctYhZ.js",
+      "_Seo-Jhl7RwkS.js"
     ],
     "css": [
-      "assets/app-DUPly5x1.css"
+      "assets/app-DPRvsQsC.css"
     ]
   },
   "resources/js/pages/event/index.tsx": {
-    "file": "assets/index-D7yB52-D.js",
+    "file": "assets/index-DgZ-B2ps.js",
     "name": "index",
     "src": "resources/js/pages/event/index.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_appLayout-sBVLiMsb.js",
-      "_Seo-Diy66m63.js",
+      "_appLayout-tl-ctYhZ.js",
+      "_Seo-Jhl7RwkS.js",
       "_date-CvTBNb8s.js",
-      "_map-pin-C6vavN-8.js"
+      "_map-pin-BP7WCggL.js"
     ],
     "css": [
-      "assets/app-DUPly5x1.css"
+      "assets/app-DPRvsQsC.css"
     ]
   },
   "resources/js/pages/event/show.tsx": {
-    "file": "assets/show-BnHe1KKy.js",
+    "file": "assets/show-C-bSPBYj.js",
     "name": "show",
     "src": "resources/js/pages/event/show.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_appLayout-sBVLiMsb.js",
-      "_Seo-Diy66m63.js",
+      "_appLayout-tl-ctYhZ.js",
+      "_Seo-Jhl7RwkS.js",
       "_date-CvTBNb8s.js",
-      "_map-pin-C6vavN-8.js"
+      "_map-pin-BP7WCggL.js"
     ],
     "css": [
-      "assets/app-DUPly5x1.css"
+      "assets/app-DPRvsQsC.css"
     ]
   },
   "resources/js/pages/homepage.tsx": {
-    "file": "assets/homepage-BXD-E8me.js",
+    "file": "assets/homepage-CAFzovqG.js",
     "name": "homepage",
     "src": "resources/js/pages/homepage.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_appLayout-sBVLiMsb.js",
-      "_Seo-Diy66m63.js",
+      "_appLayout-tl-ctYhZ.js",
+      "_Seo-Jhl7RwkS.js",
       "_date-CvTBNb8s.js",
-      "_map-pin-C6vavN-8.js"
+      "_map-pin-BP7WCggL.js"
     ],
     "css": [
-      "assets/app-DUPly5x1.css"
+      "assets/app-DPRvsQsC.css"
     ]
   }
 }
