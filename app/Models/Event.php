@@ -14,7 +14,11 @@ class Event extends Model
         'start_date' => 'datetime',
         'end_date' => 'datetime',
         'gallery' => 'array', // <-- JSON becomes array of objects
+        'custom_fields' => 'array',
+        'isVip' => 'boolean',
     ];
+
+   
 
         public function registrations()
     {

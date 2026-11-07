@@ -10,7 +10,8 @@ Route::get('/', function () {
     $events = Event::where('status', 'published')
         ->latest('start_date') // Order by newest first
         ->paginate(6);
-    return Inertia::render('homepage', ['events' => $events] );
+    $featuredEvent = Event::where('is_featured', true)->first();
+    return Inertia::render('homepage', ['events' => $events, 'featuredEvent' => $featuredEvent ] );
 })->name('home');
 
 Route::get('/aboutus', function ()  {

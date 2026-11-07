@@ -59,7 +59,23 @@ export default function Create({ event }: Props) {
     const [qrCode, setQrCode] = useState<string | null>(null);
     const [registrantName, setRegistrantName] = useState('');
 
-    const { data, setData, post, processing, errors } = useForm({
+    type CustomFieldAnswers = Record<string, string | number | boolean>;
+
+    type RegistrationForm = {
+        title: string;
+        name: string;
+        email: string;
+        company_name: string;
+        address: string;
+        province: string;
+        telephone: string;
+        language: string;
+        job_position: string;
+        isVip: boolean;
+        custom_fields: CustomFieldAnswers;
+    };
+
+    const { data, setData, post, processing, errors } = useForm<RegistrationForm>({
         title: '',
         name: '',
         email: '',
@@ -70,12 +86,15 @@ export default function Create({ event }: Props) {
         language: '',
         job_position: '',
         isVip: false,
+        custom_fields: {},
     });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         post(`/event/${event.id}/register`);
     };
+
+    const setCustomField = (key: string, value: string | number | boolean) => setData('custom_fields', { ...data.custom_fields, [key]: value });
 
     return (
         <>
@@ -139,7 +158,7 @@ export default function Create({ event }: Props) {
                                 {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
                             </div>
 
-                            {/* Address */}
+                            {/* Address
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Address</label>
                                 <textarea
@@ -149,7 +168,68 @@ export default function Create({ event }: Props) {
                                     className="mt-1 w-full rounded-lg border px-3 py-2"
                                     placeholder="Street, City, Postal Code"
                                 />
-                            </div>
+                            </div> */}
+
+                            {/*Custom fields*/}
+
+                            {event.custom_fields?.map((def) => {
+                                const value = String(data.custom_fields[def.field] ?? '');
+                                const error = (errors as Record<string, string>)[`custom_fields.${def.field}`];
+
+                                return (
+                                    <div key={def.field}>
+                                        <label className="block text-sm font-medium text-gray-700">
+                                            {def.label ?? def.field}
+                                            {def.required && <span className="text-red-500"> *</span>}
+                                        </label>
+
+                                        {def.type === 'select' ? (
+                                            <select
+                                                value={value}
+                                                onChange={(e) => setCustomField(def.field, e.target.value)}
+                                                required={def.required}
+                                                className="mt-1 w-full rounded-lg border px-3 py-2"
+                                            >
+                                                <option value="">-- Select {def.label ?? def.field} --</option>
+                                                {def.options!.map((opt) => (
+                                                    <option key={opt} value={opt}>
+                                                        {opt}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        ) : def.type === 'radio' ? (
+                                            <div className="mt-1 flex flex-col gap-2">
+                                                {def.options!.map((opt) => (
+                                                    <label
+                                                        key={opt}
+                                                        className="flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm text-gray-700"
+                                                    >
+                                                        <input
+                                                            type="radio"
+                                                            name={`custom_fields_${def.field}`}
+                                                            value={opt}
+                                                            checked={value === opt}
+                                                            onChange={() => setCustomField(def.field, opt)}
+                                                            required={def.required}
+                                                        />
+                                                        {opt}
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <input
+                                                type={def.type === 'number' ? 'number' : 'text'}
+                                                value={value}
+                                                onChange={(e) => setCustomField(def.field, e.target.value)}
+                                                required={def.required}
+                                                className="mt-1 w-full rounded-lg border px-3 py-2"
+                                            />
+                                        )}
+
+                                        {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+                                    </div>
+                                );
+                            })}
 
                             {/* Province */}
                             <div>
@@ -202,7 +282,7 @@ export default function Create({ event }: Props) {
                                     </span>
                                 </div>
                                 {/* IsVIP */}
-                                {event.hasVip && (
+                                {!!event.hasVip && (
                                     <div className="mt-1 flex gap-4">
                                         <input
                                             type="radio"
@@ -222,11 +302,6 @@ export default function Create({ event }: Props) {
                                             </span>
                                             {')'}
                                         </span>
-                                    </div>
-                                )}
-                                {data.isVip && (
-                                    <div className="mt-2 ml-6 rounded-lg bg-gray-50 p-3 text-sm text-gray-600">
-                                        <p>Payment will be collected at the event. Please pay at the registration desk upon arrival.</p>
                                     </div>
                                 )}
                             </div>

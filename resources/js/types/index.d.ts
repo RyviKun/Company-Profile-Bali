@@ -70,10 +70,20 @@ export interface Event {
     earlyBirdPrice: number;
     earlyBirdDate: string;
     isRegisterable: string;
+    custom_fields?: CustomFieldDef[] | null;
+    isFeatured: boolean | null;
     created_at: string;
     updated_at: string;
     deleted_at: string | null; // Soft deletes
 }
+
+type CustomFieldDef = {
+    field: string;
+    label?: string;
+    type: 'text' | 'number' | 'select' | 'checkbox' | 'radio';
+    options?: string[];
+    required?: boolean;
+};
 
 export interface GalleryItem {
     src: string;

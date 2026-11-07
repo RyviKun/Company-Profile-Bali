@@ -8,6 +8,23 @@ import { Link, usePage } from '@inertiajs/react';
 import { Calendar, MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+const escapeHtml = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+function injectGallery(html: string, gallery: Event['gallery']) {
+    return html.replace(/\[gallery:(\d+)\]/g, (match, n) => {
+        const img = gallery?.[Number(n) - 1];
+        if (!img) return ''; // wrong number: show nothing instead of the raw token
+
+        return `
+            <figure style="margin:1.5rem 0;">
+                <img src="${escapeHtml(img.src)}" alt="${escapeHtml(img.alt ?? '')}"
+                     loading="lazy"
+                     style="width:100%; max-width:800px; height:auto; border-radius:12px;" />
+                ${img.description ? `<figcaption style="margin-top:0.5rem; font-size:0.875rem; color:#64748b;">${escapeHtml(img.description)}</figcaption>` : ''}
+            </figure>`;
+    });
+}
+
 interface Props {
     event: Event; // <-- THIS IS THE CORRECT TYPE
 }
@@ -107,7 +124,7 @@ export default function EventShow({ event }: Props) {
                                 <div className="lg:hidden">
                                     <EventCountdown startDate={event.start_date} endDate={event.end_date} location={event.address} />
                                 </div>
-                                <div dangerouslySetInnerHTML={{ __html: event.content ?? '' }} />
+                                <div dangerouslySetInnerHTML={{ __html: injectGallery(event.content ?? '', event.gallery) }} />
                             </>
 
                             {/* Right column */}

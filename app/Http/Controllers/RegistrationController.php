@@ -30,7 +30,34 @@ class RegistrationController extends Controller
     // Store registration
     public function store(Request $request, Event $event)
     {
-        $validated = $request->validate([
+        $rules = [];
+
+        foreach ($event->custom_fields ?? [] as $def) {
+        $key = "custom_fields.{$def['field']}";
+        $fieldRules = [!empty($def['required']) ? 'required' : 'nullable'];
+
+        switch ($def['type']) {
+            case 'select':
+                $fieldRules[] = Rule::in($def['options']);
+                break;
+            case 'radio':
+                $fieldRules[] = Rule::in($def['options']);
+                break;
+            case 'number':
+                $fieldRules[] = 'numeric';
+                break;
+            case 'checkbox':
+                $fieldRules[] = 'boolean';
+                break;
+            default: // text
+                $fieldRules[] = 'string';
+                $fieldRules[] = 'max:255';
+        }
+
+        $rules[$key] = $fieldRules;
+        }
+
+        $validated = $request->validate(array_merge([
             'title' => 'nullable|string|max:20',
             'name' => 'required|string|max:255',
             'email' => [    
@@ -55,7 +82,7 @@ class RegistrationController extends Controller
             'language' => 'nullable|string|max:50',
             'job_position' => 'nullable|string|max:100',
             'isVip' => 'boolean',
-        ], [
+        ], $rules), [
             'email.unique' => 'This email is already registered in this event.',
             'telephone.unique' => 'This phone number is already registered for this event.',
         ]);

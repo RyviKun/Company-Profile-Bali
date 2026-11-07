@@ -20,10 +20,14 @@ class Registration extends Model
         'job_position',
         'status',
         'qr_token',
-        'isVip'
+        'isVip',
+        'custom_fields'
     ];
 
- 
+    protected $casts = [
+        'custom_fields' => 'array',
+        'isVip' => 'boolean',   // optional, see below
+    ];
 
     protected static function booted()
     {

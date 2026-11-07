@@ -1,15 +1,57 @@
 import AppLayout from '@/components/layout/appLayout';
 import Contact from '@/components/sections/contact';
 import Seo from '@/components/Seo';
-import { formatEventDateRange } from '@/helpers/date';
+import { formatEventDateRange, isDatePassed } from '@/helpers/date';
 import { Event, PaginatedData } from '@/types';
 import { Link } from '@inertiajs/react';
-import { Calendar } from 'lucide-react';
+import { Calendar, MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
+
 interface Props {
     events: PaginatedData<Event>;
+    featuredEvent?: Event | null;
 }
-export default function Home({ events }: Props) {
+
+function CompactCountdown({ startDate, endDate }: { startDate: string; endDate?: string | null }) {
+    // "2026-12-04 09:00:00" -> ISO format, so Safari parses it too
+    const toMs = (d: string) => new Date(d.replace(' ', 'T')).getTime();
+    const target = toMs(startDate);
+
+    const [now, setNow] = useState(() => Date.now());
+
+    useEffect(() => {
+        const t = setInterval(() => setNow(Date.now()), 1000);
+        return () => clearInterval(t);
+    }, []);
+
+    const diff = target - now;
+
+    if (diff <= 0) {
+        const ended = endDate && now > toMs(endDate);
+        return <p className="text-sm font-semibold text-blue-400">{ended ? 'This event has ended' : 'Happening now'}</p>;
+    }
+
+    const units = [
+        { label: 'Days', value: Math.floor(diff / 86400000) },
+        { label: 'Hrs', value: Math.floor((diff / 3600000) % 24) },
+        { label: 'Min', value: Math.floor((diff / 60000) % 60) },
+        { label: 'Sec', value: Math.floor((diff / 1000) % 60) },
+    ];
+
+    return (
+        <div className="flex items-center gap-2">
+            {units.map((u) => (
+                <div key={u.label} className="min-w-[56px] rounded-lg bg-slate-900 px-2 py-1.5 text-center">
+                    <p className="text-lg leading-none font-extrabold text-white tabular-nums">{String(u.value).padStart(2, '0')}</p>
+                    <p className="mt-1 text-[10px] font-semibold tracking-wider text-slate-400 uppercase">{u.label}</p>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+export default function Home({ events, featuredEvent }: Props) {
+    console.log(featuredEvent);
     const slides = [
         {
             image: '/images/caraousel/1.JPG',
@@ -99,10 +141,81 @@ export default function Home({ events }: Props) {
                     </button>
                 </section>
 
+                {featuredEvent && (
+                    <section className="bg-primary py-12">
+                        <div className="mx-auto max-w-6xl px-4">
+                            <div className="flex flex-col overflow-hidden rounded-2xl bg-slate-100 shadow-lg md:flex-row">
+                                {/* Image */}
+                                <div className="relative h-52 w-full flex-shrink-0 md:h-auto md:w-2/5">
+                                    <img
+                                        src={featuredEvent.gallery?.[0]?.src}
+                                        alt={featuredEvent.gallery?.[0]?.alt ?? featuredEvent.title}
+                                        className="absolute inset-0 h-full w-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-slate-950/40" />
+                                    <span className="absolute top-4 left-4 rounded-full bg-blue-600 px-3 py-1 text-xs font-bold tracking-wider text-white">
+                                        FEATURED EVENT
+                                    </span>
+                                </div>
+
+                                {/* Content */}
+                                <div className="flex flex-1 flex-col justify-center gap-4 p-6 text-left sm:p-8">
+                                    <h2 className="text-2xl leading-tight font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+                                        {featuredEvent.title}
+                                    </h2>
+
+                                    <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-700">
+                                        {featuredEvent.start_date && featuredEvent.end_date && (
+                                            <div className="flex items-center gap-2">
+                                                <Calendar className="h-4 w-4 text-blue-600" />
+                                                {formatEventDateRange(featuredEvent.start_date, featuredEvent.end_date)}
+                                            </div>
+                                        )}
+                                        {featuredEvent.address && (
+                                            <div className="flex items-center gap-2">
+                                                <MapPin className="h-4 w-4 text-blue-600" />
+                                                {featuredEvent.address}
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {featuredEvent.shortDescription && (
+                                        <p className="line-clamp-4 text-sm leading-relaxed text-slate-600">{featuredEvent.shortDescription}</p>
+                                    )}
+
+                                    {featuredEvent.start_date && (
+                                        <CompactCountdown startDate={featuredEvent.start_date} endDate={featuredEvent.end_date} />
+                                    )}
+
+                                    <div className="mt-1 flex flex-col gap-3 sm:flex-row">
+                                        {featuredEvent.isRegisterable && (
+                                            <Link
+                                                href={route('registrations.create', { event: featuredEvent.id })}
+                                                className={`${
+                                                    isDatePassed(featuredEvent.start_date)
+                                                        ? 'pointer-events-none bg-gray-500'
+                                                        : 'bg-blue-600 hover:bg-blue-700'
+                                                } rounded-lg px-6 py-2.5 text-center text-sm font-semibold text-white transition`}
+                                            >
+                                                {isDatePassed(featuredEvent.start_date) ? 'Registration has been closed' : 'Register Now'}
+                                            </Link>
+                                        )}
+                                        <Link
+                                            href={route('event.show', { slug: featuredEvent.slug })}
+                                            className="rounded-lg border border-slate-300 px-6 py-2.5 text-center text-sm font-semibold text-slate-800 transition hover:bg-slate-200"
+                                        >
+                                            View Event Details
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                )}
                 <div className="font-sans">
                     {/* Event Highlights - light section */}
-                    <section className="bg-white py-20">
-                        <div className="mx-auto max-w-6xl text-center">
+                    <section className="bg-slate-100 py-20">
+                        <div className="mx-auto max-w-6xl px-4 text-center">
                             <p className="mb-3 text-xs font-bold tracking-[0.15em] text-blue-500">MEDIA SHOWCASE</p>
                             <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-slate-900">Event Highlights</h2>
                             <div className="mx-auto mb-12 h-1 w-12 rounded-full bg-blue-200" />
@@ -119,7 +232,7 @@ export default function Home({ events }: Props) {
 
                     {/* Ongoing Events - dark section */}
                     <section className="bg-primary py-16">
-                        <div className="mx-auto flex max-w-6xl flex-col text-center">
+                        <div className="mx-auto flex max-w-6xl flex-col px-4 text-center">
                             <p className="mb-3 text-xs font-bold tracking-[0.15em] text-slate-400">WHAT WE OFFER</p>
                             <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-white">Ongoing Events</h2>
                             <div className="mx-auto mb-12 h-1 w-12 rounded-full bg-white" />
@@ -154,7 +267,7 @@ export default function Home({ events }: Props) {
                 </div>
 
                 {/* Contact Section */}
-                <section id="contact" className="bg-background py-16 text-center">
+                <section id="contact" className="bg-slate-100 py-16 text-center">
                     <Contact />
                 </section>
             </AppLayout>
