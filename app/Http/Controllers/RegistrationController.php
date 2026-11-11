@@ -146,27 +146,53 @@ class RegistrationController extends Controller
         return back()->with('success', 'Registration updated.');
     }
 
-    public function checkToken($token)
-    {
-        // Find registration by qr_token
-        $registration = Registration::where('qr_token', $token)->first();
-
-        if (!$registration) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Invalid QR code or registration not found.',
-            ], 404);
-        }
-
-        // Load the associated event
-        $registration->load('event');
-
+    public function checkToken(string $token)
+{
+    // Reject malformed tokens before hitting the DB
+    if (!Str::isUuid($token)) {
         return response()->json([
-            'success' => true,
-            'data' => [
-                'registration' => $registration,
-                'event' => $registration->event,
-            ],
-        ]);
+            'success' => false,
+            'message' => 'Invalid QR code or registration not found.',
+        ], 404);
     }
+
+    $registration = Registration::where('qr_token', $token)
+        ->with('event:id,title,slug,start_date,end_date,address,googleMapsLink')
+        ->first();
+
+    if (!$registration) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Invalid QR code or registration not found.',
+        ], 404);
+    }
+
+    return response()->json([
+        'success' => true,
+        'data' => [
+            'status'  => $registration->status,
+            'name'    => $registration->name,
+            'email'   => $this->maskEmail($registration->email),
+            'is_vip'  => (bool) $registration->isVip,
+            'purpose' => $registration->custom_fields['tujuan'] ?? null,
+            'event'   => [
+                'title'      => $registration->event->title,
+                'slug'       => $registration->event->slug,
+                'start_date' => $registration->event->start_date,
+                'end_date'   => $registration->event->end_date,
+                'venue'      => $registration->event->address,
+                'maps_url'   => $registration->event->googleMapsLink,
+            ],
+        ],
+    ]);
+    }
+
+    private function maskEmail(?string $email): ?string
+    {
+        if (!$email || !str_contains($email, '@')) {
+            return null;
+        }
+        [$user, $domain] = explode('@', $email, 2);
+        return Str::substr($user, 0, 1) . str_repeat('*', max(strlen($user) - 2, 1)) . Str::substr($user, -1) . '@' . $domain;
+}
 }

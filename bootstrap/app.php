@@ -22,6 +22,10 @@ return Application::configure(basePath: dirname(__DIR__))
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
         ]);
+
+        $middleware->alias([
+        'api.key' => \App\Http\Middleware\EnsureValidApiKey::class,
+    ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
