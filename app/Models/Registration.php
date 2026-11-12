@@ -32,7 +32,7 @@ class Registration extends Model
     protected static function booted()
     {
         static::creating(function ($registration) {
-            $registration->qr_token = Str::uuid()->toString();
+            $registration->qr_token ??= Str::uuid()->toString();
         });
     }
     public function event()

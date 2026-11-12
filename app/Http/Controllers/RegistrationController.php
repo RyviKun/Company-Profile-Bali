@@ -87,15 +87,15 @@ class RegistrationController extends Controller
             'telephone.unique' => 'This phone number is already registered for this event.',
         ]);
 
-        // Generate QR token
-        $qrToken = Str::uuid()->toString();
+        
 
         // Create the registration record
         $registration = Registration::create(array_merge($validated, [
             'event_id' => $event->id,
-            'qr_token' => $qrToken,
         ]));
 
+        $qrToken = $registration->qr_token; // always matches the DB
+        
         // Build QR code using named arguments
         $result = (new Builder(
             writer: new PngWriter(),
