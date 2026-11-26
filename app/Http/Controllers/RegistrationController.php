@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Validation\Rule;
 
+use App\Exports\RegistrationsExport; 
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Illuminate\Support\Str;
 
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegistrationConfirmation;
 use Illuminate\Support\Facades\Log;
@@ -195,4 +197,22 @@ class RegistrationController extends Controller
         [$user, $domain] = explode('@', $email, 2);
         return Str::substr($user, 0, 1) . str_repeat('*', max(strlen($user) - 2, 1)) . Str::substr($user, -1) . '@' . $domain;
 }
+
+    public function export(Request $request, Event $event)
+    {
+        $request->validate([
+            'status' => 'nullable|string|in:pending,approved,confirmed,cancelled',
+        ]);
+
+        $filename = sprintf(
+            'registrations-%s-%s.xlsx',
+            $event->slug,
+            now()->format('Ymd-His')
+        );
+
+        return Excel::download(
+            new RegistrationsExport($event->id, $request->query('status')),
+            $filename
+        );
+    }
 }

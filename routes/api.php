@@ -37,7 +37,7 @@ use App\Http\Controllers\RegistrationController;
 
 Route::middleware('api.key')->group(function () {
     Route::get('/check/{token}', [RegistrationController::class, 'checkToken']);
-    // all other protected endpoints
+    Route::get('/events/{event}/registrations/export', [RegistrationController::class, 'export']);
 });
 
 
